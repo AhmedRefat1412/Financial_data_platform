@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fact_transactions
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+      - name: merchant_id
+        tests:
+          - not_null
+      - name: time_id
+        tests:
+          - not_null
+      - name: amount
+        tests:
+          - not_null
+      - name: is_fraud
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_merchant
+    columns:
+      - name: merchant_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_time
+    columns:
+      - name: time_id
+        tests:
+          - not_null
+          - unique
